@@ -5,14 +5,15 @@
 подключился к терминалу тестового стенда с помощью команды vagrant ssh
   
 2. ### Определение алгоритма с наилучшим сжатием  
-проверил наличия достаточного количесива дисков  
+проверил наличия достаточного количества дисков  
 создал файловую систему ZFS на 4-х блочнйх устройствах  
+  
     [root@zfs ~]# zpool create zpool_m1 mirror /dev/sdb /dev/sdc  
     [root@zfs ~]# zpool create zpool_m2 mirror /dev/sdd /dev/sde  
     [root@zfs ~]# zpool create zpool_m3 mirror /dev/sdf /dev/sdg  
     [root@zfs ~]# zpool create zpool_m4 mirror /dev/sdh /dev/sdi  
   
-задал метод компресси для каждого пула  
+задал метод компрессии для каждого пула  
   
     [root@zfs ~]# zfs get all | grep compression  
     zpool_m1  compression           lzjb                   local  
@@ -20,7 +21,7 @@
     zpool_m3  compression           gzip-9                 local  
     zpool_m4  compression           zle                    local  
   
-скачал один и тот же текстовый файл во все пуллы  
+скачал один и тот же текстовый файл во все пулы  
 проверил проверил сколько места занимает один и тот же файл  
   
     [root@zfs ~]# zpool list  
@@ -30,7 +31,7 @@
     zpool_m3   480M  10.9M   469M        -         -     0%     2%  1.00x    ONLINE  -  
     zpool_m4   480M  39.3M   441M        -         -     0%     8%  1.00x    ONLINE  -  
   
-исходя из полученной информации можно сделать вывод, что самый эфективный метод сжатия gzip-9  
+исходя из полученной информации можно сделать вывод, что самый эффективный метод сжатия gzip-9  
   
     [root@zfs ~]# zfs list  
     NAME       USED  AVAIL     REFER  MOUNTPOINT  
@@ -48,6 +49,7 @@
 3. ### Определение настроек пула  
 скачал архив и разархивировал его в домашний каталог  
 проверил возможно ли импортировать данный каталог в пул  
+  
     [root@zfs ~]# zpool import -d zpoolexport/  
       pool: otus  
       id: 6554193320433390805  
@@ -105,11 +107,11 @@
   
     [root@zfs ~]# zfs receive otus/test@today < otus_task2.file  
   
-далее нашел в каталоге файл с именем "secret_message" и посмотрел содежимое файла  
+далее нашел в каталоге файл с именем "secret_message" и посмотрел содержимое файла  
     [root@zfs ~]# find /otus/test/ -name "secret_message"  
     /otus/test/task1/file_mess/secret_message  
     [root@zfs ~]# cat /otus/test/task1/file_mess/secret_message  
     https://github.com/sindresorhus/awesome  
   
 в файле обнаружил ссылку на репозиторий GitHub  
-[в текущих реалиях содержимое данного репозитория подпадает под стаьи 280.3, 275 УК РФ](https://ria.ru/20220322/pomosch-1779389662.html)
+[в текущих реалиях содержимое данного репозитория подпадает под статьи 280.3, 275 УК РФ](https://ria.ru/20220322/pomosch-1779389662.html)
