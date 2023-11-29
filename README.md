@@ -1,7 +1,7 @@
 # Практические навыки работы с ZFS  
   
-1. Подготовка тестового стенда
-Используя Vagrantfile и команду vagrant up создал виртуальную машину с дополнительными дисками  
+1. Подготовка тестового стенда  
+используя Vagrantfile и команду vagrant up создал виртуальную машину с дополнительными дисками  
 подключился к терминалу тестового стенда с помощью команды vagrant ssh
 
 2. Определение алгоритма с наилучшим сжатием
@@ -26,17 +26,17 @@ zpool_m2   480M  17.7M   462M        -         -     0%     3%  1.00x    ONLINE 
 zpool_m3   480M  10.9M   469M        -         -     0%     2%  1.00x    ONLINE  -  
 zpool_m4   480M  39.3M   441M        -         -     0%     8%  1.00x    ONLINE  -  
 исходя из полученной информации можно сделать вывод, что самый эфективный метод сжатия gzip-9   
-[root@zfs ~]# zfs list
-NAME       USED  AVAIL     REFER  MOUNTPOINT
-zpool_m1  21.7M   330M     21.6M  /zpool_m1
-zpool_m2  17.7M   334M     17.6M  /zpool_m2
-**zpool_m3  10.8M   341M     10.7M  /zpool_m3**
-zpool_m4  39.2M   313M     39.1M  /zpool_m4
-[root@zfs ~]# zfs get all | grep compressratio | grep -v ref
-zpool_m1  compressratio         1.81x                  -
-zpool_m2  compressratio         2.22x                  -
-**zpool_m3  compressratio         3.65x                  -**
-zpool_m4  compressratio         1.00x                  -
+[root@zfs ~]# zfs list  
+NAME       USED  AVAIL     REFER  MOUNTPOINT  
+zpool_m1  21.7M   330M     21.6M  /zpool_m1  
+zpool_m2  17.7M   334M     17.6M  /zpool_m2  
+**zpool_m3  10.8M   341M     10.7M  /zpool_m3**  
+zpool_m4  39.2M   313M     39.1M  /zpool_m4  
+[root@zfs ~]# zfs get all | grep compressratio | grep -v ref  
+zpool_m1  compressratio         1.81x                  -  
+zpool_m2  compressratio         2.22x                  -  
+**zpool_m3  compressratio         3.65x                  -**  
+zpool_m4  compressratio         1.00x                  -  
   
 3. 
 
