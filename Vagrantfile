@@ -7,6 +7,7 @@ MACHINES = {
   :zfs => {
         :box_name => "centos/7",
         :box_version => "2004.01",
+        :provision => "./scripts/script.sh",
     :disks => {
         :sata1 => {
             :dfile => './sata1.vdi',
@@ -86,6 +87,7 @@ Vagrant.configure("2") do |config|
                 end
              end
           end
+        box.vm.provision :file, source: './scripts', destination: '/home/vagrant/scripts'
         box.vm.provision "shell", inline: <<-SHELL
           #install zfs repo
           yum install -y http://download.zfsonlinux.org/epel/zfs-release.el7_8.noarch.rpm
@@ -102,6 +104,7 @@ Vagrant.configure("2") do |config|
           #install wget
           yum install -y wget
       SHELL
+      box.vm.provision "shell", path: boxconfig[:provision]
       end
       config.vm.synced_folder '.', '/vagrant', disabled: true
   end

@@ -5,6 +5,7 @@
 подключился к терминалу тестового стенда с помощью команды vagrant ssh
   
 2. ### Определение алгоритма с наилучшим сжатием  
+перед началом работы необходимо перейти в режим эмуляции с помощью sudo -i
 проверил наличия достаточного количества дисков  
 создал файловую систему ZFS на 4-х блочнйх устройствах  
   
@@ -22,7 +23,7 @@
     zpool_m4  compression           zle                    local  
   
 скачал один и тот же текстовый файл во все пулы  
-проверил проверил сколько места занимает один и тот же файл  
+проверил сколько места занимает один и тот же файл  
   
     [root@zfs ~]# zpool list  
     NAME       SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT  
@@ -37,13 +38,13 @@
     NAME       USED  AVAIL     REFER  MOUNTPOINT  
     zpool_m1  21.7M   330M     21.6M  /zpool_m1  
     zpool_m2  17.7M   334M     17.6M  /zpool_m2  
-    **zpool_m3  10.8M   341M     10.7M  /zpool_m3**  
+**    zpool_m3  10.8M   341M     10.7M  /zpool_m3  **  
     zpool_m4  39.2M   313M     39.1M  /zpool_m4  
   
     [root@zfs ~]# zfs get all | grep compressratio | grep -v ref  
     zpool_m1  compressratio         1.81x                  -  
     zpool_m2  compressratio         2.22x                  -  
-    **zpool_m3  compressratio         3.65x                  -**  
+**    zpool_m3  compressratio         3.65x                -  **  
     zpool_m4  compressratio         1.00x                  -  
   
 3. ### Определение настроек пула  
@@ -108,10 +109,10 @@
     [root@zfs ~]# zfs receive otus/test@today < otus_task2.file  
   
 далее нашел в каталоге файл с именем "secret_message" и посмотрел содержимое файла  
+  
     [root@zfs ~]# find /otus/test/ -name "secret_message"  
     /otus/test/task1/file_mess/secret_message  
     [root@zfs ~]# cat /otus/test/task1/file_mess/secret_message  
     https://github.com/sindresorhus/awesome  
   
 в файле обнаружил ссылку на репозиторий GitHub  
-[в текущих реалиях содержимое данного репозитория подпадает под статьи 280.3, 275 УК РФ](https://ria.ru/20220322/pomosch-1779389662.html)
