@@ -38,13 +38,13 @@
     NAME       USED  AVAIL     REFER  MOUNTPOINT  
     zpool_m1  21.7M   330M     21.6M  /zpool_m1  
     zpool_m2  17.7M   334M     17.6M  /zpool_m2  
-**    zpool_m3  10.8M   341M     10.7M  /zpool_m3  **  
+    zpool_m3  10.8M   341M     10.7M  /zpool_m3  
     zpool_m4  39.2M   313M     39.1M  /zpool_m4  
   
     [root@zfs ~]# zfs get all | grep compressratio | grep -v ref  
     zpool_m1  compressratio         1.81x                  -  
     zpool_m2  compressratio         2.22x                  -  
-**    zpool_m3  compressratio         3.65x                -  **  
+    zpool_m3  compressratio         3.65x                  -    
     zpool_m4  compressratio         1.00x                  -  
   
 3. ### Определение настроек пула  
